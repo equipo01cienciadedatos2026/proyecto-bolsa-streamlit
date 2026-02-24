@@ -53,7 +53,7 @@ Este proyecto es un Producto desarrollado con **Streamlit** para visualizar y an
 ```
 ### luego
 ```bash
-cd proyecto-bolsa-streamlitahora
+cd proyecto-bolsa-streamlit
 ```
 
 ### 2. Crear y activar entorno virtual
