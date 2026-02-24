@@ -49,9 +49,9 @@ Este proyecto es un Producto desarrollado con **Streamlit** para visualizar y an
 ### 1. Clonar el repositorio
 
 ```bash
-    git clone [https://github.com/equipo01cienciadedatos2026/proyecto-bolsa-streamlit.git](https://github.com/equipo01cienciadedatos2026/proyecto-bolsa-streamlit.git)
+ git clone https://github.com/equipo01cienciadedatos2026/proyecto-bolsa-streamlit.git
 ```
-
+### luego
 ```bash
 cd proyecto-bolsa-streamlitahora
 ```
