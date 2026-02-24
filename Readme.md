@@ -4,6 +4,19 @@
 
 Este proyecto es un Producto desarrollado con **Streamlit** para visualizar y analizar datos financieros de activos mineros y globales utilizando la API de **Yahoo Finance**.
 
+## Grupo 1
+### Integrantes
+
+* Asencios Rojas, Herberth Alvaro.
+* Benites Meza, Marco Fabricio.
+* Del Solar Rojas, Jorge Sebastian.
+* Guerrero Jaramillo, Andres Abraham.
+* Peralta Farfán, Raymond Alain.
+* Matos Ramos, Franco Antonio.
+* Herrera Fernandez Yumerth Mijail.
+* Vidalon Flores, Daniel Omar.
+* Rojas Huamaní, Percy Ares.
+
 
 
 ## 🚀 Características
@@ -31,65 +44,37 @@ Este proyecto es un Producto desarrollado con **Streamlit** para visualizar y an
 * **YFinance** (Fuente de datos financieros)
 
 
-
 ## 📦 Instalación y Uso
-
-
 
 ### 1. Clonar el repositorio
 
-
+```bash
+    git clone [https://github.com/equipo01cienciadedatos2026/proyecto-bolsa-streamlit.git](https://github.com/equipo01cienciadedatos2026/proyecto-bolsa-streamlit.git)
+```
 
 ```bash
-
-git clone [https://github.com/equipo01cienciadedatos2026/proyecto-bolsa-streamlit.git](https://github.com/equipo01cienciadedatos2026/proyecto-bolsa-streamlit.git)
-
 cd proyecto-bolsa-streamlitahora
-
-
+```
 
 ### 2. Crear y activar entorno virtual
-
-
-
-```powershell
-
-# Crear el entorno virtual
-
+```bash
 python -m venv .venv
-
-
-
-# Activar el entorno en Windows (PowerShell):
-
+```
+### Activar el entorno en Windows (PowerShell):
+```bash
 .\.venv\Scripts\Activate.ps1
-
+```
 
 
 ### 3. Instalar dependencias
-
-
-
-Una vez activado el entorno, instala todas las librerías necesarias (Streamlit, Pandas, YFinance, etc.) usando el archivo de requerimientos:
-
-
-
 ```bash
-
 pip install -r requirements.txt
+```
 
 
-
-
-
-### 4. Ejecutar la Aplicación
-
-
-
-Finalmente, inicia el servidor local de Streamlit para ver el prototipo en tu navegador:
-
-
-
+### 4. Crear y activar entorno virtual
 ```bash
-
 streamlit run app.py
+```
+
+
