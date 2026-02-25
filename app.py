@@ -1,4 +1,11 @@
 import streamlit as st
+import os
+
+if not os.path.exists(os.path.join('database', 'bolsa.db')):
+    from database.init_db import crear_tablas
+    from database.seed_data import seed
+    crear_tablas()
+    seed()
 
 st.set_page_config(
     page_title='FinPredict - Predicción Bursátil con IA',
