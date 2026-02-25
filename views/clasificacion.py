@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+import json
 import plotly.graph_objects as go
 from datetime import datetime
 from config import EMPRESAS, FEATURE_COLS, VENTANA_DL
@@ -367,6 +368,92 @@ def render():
                     )
                     guardadas += 1
                 st.success(f'{guardadas} predicciones guardadas en la base de datos.')
+
+        # ── Señal de Trading ──
+        st.divider()
+        st.markdown('### Señal de Trading')
+
+        confianza_prom = np.mean([v.get('confianza', 0.5) or 0.5 for v in predicciones_validas.values()])
+        ratio_sube = sube / total if total > 0 else 0.5
+
+        if ratio_sube >= 0.8 and confianza_prom >= 0.6:
+            senal, senal_icon, senal_color, senal_bg = 'COMPRA FUERTE', '🟢', '#16a34a', '#f0fdf4'
+            senal_desc = 'La mayoría de modelos predicen alza con alta confianza.'
+        elif ratio_sube >= 0.6:
+            senal, senal_icon, senal_color, senal_bg = 'COMPRA', '🟢', '#16a34a', '#f0fdf4'
+            senal_desc = 'Tendencia alcista probable. Considerar posición larga.'
+        elif ratio_sube <= 0.2 and confianza_prom >= 0.6:
+            senal, senal_icon, senal_color, senal_bg = 'SHORT', '🔴', '#dc2626', '#fef2f2'
+            senal_desc = 'Fuerte señal bajista. Considerar posición corta.'
+        elif ratio_sube <= 0.4:
+            senal, senal_icon, senal_color, senal_bg = 'VENTA', '🔴', '#dc2626', '#fef2f2'
+            senal_desc = 'Tendencia bajista probable. Considerar cerrar posición.'
+        else:
+            senal, senal_icon, senal_color, senal_bg = 'HOLD', '🟡', '#f59e0b', '#fffbeb'
+            senal_desc = 'Señales mixtas. Mantener posición actual y esperar.'
+
+        st.markdown(
+            f'<div style="text-align:center; padding:24px; background:{senal_bg}; '
+            f'border:1px solid #e2e8f0; border-radius:12px; border-left:4px solid {senal_color};">'
+            f'<p style="font-size:0.85rem; color:#64748b !important; margin:0 0 6px 0;">Señal para {empresa_key} — {info["nombre"]}</p>'
+            f'<p style="font-size:2.2rem; font-weight:800; color:{senal_color} !important; margin:0;">'
+            f'{senal_icon} {senal}</p>'
+            f'<p style="font-size:0.9rem; color:#64748b !important; margin:8px 0 0 0;">{senal_desc}</p>'
+            f'<p style="font-size:0.78rem; color:#94a3b8 !important; margin:6px 0 0 0;">'
+            f'Consenso: {sube}/{total} modelos alcistas | Confianza promedio: {confianza_prom:.1%}</p>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+
+        # ── Métricas de Evaluación ──
+        st.divider()
+        st.markdown('### Métricas de Evaluación de los Modelos')
+        metrics_path = os.path.join(MODELS_BASE, 'metrics.json')
+        if os.path.exists(metrics_path):
+            with open(metrics_path) as f:
+                all_metrics = json.load(f)
+            cls_metrics = all_metrics.get('clasificacion', {}).get(empresa_key, {})
+
+            if cls_metrics:
+                met_filas = []
+                for nombre_m, met in cls_metrics.items():
+                    modo_tag = '' if met.get('modo') == 'real' else ' (Demo)'
+                    met_filas.append({
+                        'Modelo': f'{nombre_m}{modo_tag}',
+                        'Accuracy': f'{met["accuracy"]:.2%}',
+                        'Precision': f'{met["precision"]:.2%}',
+                        'Recall': f'{met["recall"]:.2%}',
+                        'F1-Score': f'{met["f1"]:.2%}',
+                        'Muestras Test': met.get('test_samples', '—'),
+                    })
+                df_met = pd.DataFrame(met_filas)
+                st.dataframe(df_met, use_container_width=True, hide_index=True)
+
+                fig_met = go.Figure()
+                nombres_m = [m['Modelo'] for m in met_filas]
+                for metrica, color in [('accuracy', '#0f2b46'), ('precision', '#1a7f64'), ('recall', '#2563eb'), ('f1', '#9333ea')]:
+                    valores = [cls_metrics[n.replace(' (Demo)', '')].get(metrica, 0) * 100
+                               for n in [m.split(' (Demo)')[0] for m in nombres_m]]
+                    fig_met.add_trace(go.Bar(
+                        name=metrica.capitalize(),
+                        x=nombres_m, y=valores,
+                        marker_color=color, opacity=0.85,
+                    ))
+                fig_met.update_layout(
+                    **CHART_LAYOUT, height=350, barmode='group',
+                    legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1),
+                    yaxis=dict(title='Porcentaje (%)', range=[0, 100], gridcolor='#eef2f6'),
+                )
+                st.plotly_chart(fig_met, use_container_width=True)
+
+                st.caption(
+                    '**Accuracy:** % de predicciones correctas | '
+                    '**Precision:** De las veces que dijo "Sube", ¿cuántas acertó? | '
+                    '**Recall:** De todas las subidas reales, ¿cuántas detectó? | '
+                    '**F1-Score:** Balance entre Precision y Recall'
+                )
+        else:
+            st.info('Ejecuta `python -m utils.generate_metrics` para generar las métricas de evaluación.')
 
     # ── Explicación de modelos ──
     st.divider()

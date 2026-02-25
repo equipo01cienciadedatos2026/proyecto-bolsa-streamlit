@@ -1,0 +1,396 @@
+{
+  "clasificacion": {
+    "FSM": {
+      "SVC": {
+        "accuracy": 0.47,
+        "precision": 0.8571,
+        "recall": 0.0366,
+        "f1": 0.0702,
+        "test_samples": 300,
+        "modo": "real"
+      },
+      "SimpleRNN": {
+        "accuracy": 0.5135,
+        "precision": 0.5322,
+        "recall": 0.4953,
+        "f1": 0.5131,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "LSTM": {
+        "accuracy": 0.5261,
+        "precision": 0.537,
+        "recall": 0.5367,
+        "f1": 0.5369,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "BiLSTM": {
+        "accuracy": 0.5995,
+        "precision": 0.5797,
+        "recall": 0.5987,
+        "f1": 0.5891,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "GRU": {
+        "accuracy": 0.5101,
+        "precision": 0.5277,
+        "recall": 0.4851,
+        "f1": 0.5055,
+        "test_samples": 250,
+        "modo": "demo"
+      }
+    },
+    "VOLCABC1": {
+      "SVC": {
+        "accuracy": 0.5304,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "test_samples": 296,
+        "modo": "real"
+      },
+      "SimpleRNN": {
+        "accuracy": 0.5094,
+        "precision": 0.5022,
+        "recall": 0.4838,
+        "f1": 0.4928,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "LSTM": {
+        "accuracy": 0.5803,
+        "precision": 0.5953,
+        "recall": 0.5657,
+        "f1": 0.5801,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "BiLSTM": {
+        "accuracy": 0.5324,
+        "precision": 0.5549,
+        "recall": 0.5284,
+        "f1": 0.5413,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "GRU": {
+        "accuracy": 0.5312,
+        "precision": 0.5575,
+        "recall": 0.5377,
+        "f1": 0.5474,
+        "test_samples": 250,
+        "modo": "demo"
+      }
+    },
+    "BVN": {
+      "SVC": {
+        "accuracy": 0.4733,
+        "precision": 0.5904,
+        "recall": 0.2832,
+        "f1": 0.3828,
+        "test_samples": 300,
+        "modo": "real"
+      },
+      "SimpleRNN": {
+        "accuracy": 0.5204,
+        "precision": 0.5248,
+        "recall": 0.4993,
+        "f1": 0.5118,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "LSTM": {
+        "accuracy": 0.5648,
+        "precision": 0.5578,
+        "recall": 0.5451,
+        "f1": 0.5514,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "BiLSTM": {
+        "accuracy": 0.5909,
+        "precision": 0.5872,
+        "recall": 0.5762,
+        "f1": 0.5817,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "GRU": {
+        "accuracy": 0.5145,
+        "precision": 0.4957,
+        "recall": 0.4924,
+        "f1": 0.494,
+        "test_samples": 250,
+        "modo": "demo"
+      }
+    },
+    "ABX": {
+      "SVC": {
+        "accuracy": 0.4281,
+        "precision": 0.6471,
+        "recall": 0.0625,
+        "f1": 0.114,
+        "test_samples": 299,
+        "modo": "real"
+      },
+      "SimpleRNN": {
+        "accuracy": 0.5637,
+        "precision": 0.5675,
+        "recall": 0.5527,
+        "f1": 0.56,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "LSTM": {
+        "accuracy": 0.5229,
+        "precision": 0.539,
+        "recall": 0.5391,
+        "f1": 0.539,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "BiLSTM": {
+        "accuracy": 0.5596,
+        "precision": 0.5835,
+        "recall": 0.5616,
+        "f1": 0.5724,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "GRU": {
+        "accuracy": 0.5311,
+        "precision": 0.5313,
+        "recall": 0.5399,
+        "f1": 0.5356,
+        "test_samples": 250,
+        "modo": "demo"
+      }
+    },
+    "BHP": {
+      "SVC": {
+        "accuracy": 0.53,
+        "precision": 0.53,
+        "recall": 1.0,
+        "f1": 0.6928,
+        "test_samples": 300,
+        "modo": "real"
+      },
+      "SimpleRNN": {
+        "accuracy": 0.5314,
+        "precision": 0.552,
+        "recall": 0.5032,
+        "f1": 0.5265,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "LSTM": {
+        "accuracy": 0.5142,
+        "precision": 0.5328,
+        "recall": 0.4971,
+        "f1": 0.5143,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "BiLSTM": {
+        "accuracy": 0.5996,
+        "precision": 0.5998,
+        "recall": 0.5987,
+        "f1": 0.5993,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "GRU": {
+        "accuracy": 0.5204,
+        "precision": 0.5228,
+        "recall": 0.5199,
+        "f1": 0.5213,
+        "test_samples": 250,
+        "modo": "demo"
+      }
+    },
+    "SCCO": {
+      "SVC": {
+        "accuracy": 0.4233,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "test_samples": 300,
+        "modo": "real"
+      },
+      "SimpleRNN": {
+        "accuracy": 0.5423,
+        "precision": 0.528,
+        "recall": 0.5598,
+        "f1": 0.5435,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "LSTM": {
+        "accuracy": 0.5101,
+        "precision": 0.5029,
+        "recall": 0.4963,
+        "f1": 0.4996,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "BiLSTM": {
+        "accuracy": 0.5247,
+        "precision": 0.5243,
+        "recall": 0.4977,
+        "f1": 0.5107,
+        "test_samples": 250,
+        "modo": "demo"
+      },
+      "GRU": {
+        "accuracy": 0.5546,
+        "precision": 0.5373,
+        "recall": 0.5378,
+        "f1": 0.5375,
+        "test_samples": 250,
+        "modo": "demo"
+      }
+    }
+  },
+  "regresion": {
+    "FSM": {
+      "ARIMA": {
+        "rmse": 6.7576,
+        "mae": 6.6891,
+        "trend_accuracy": 0.4068,
+        "test_samples": 60,
+        "modo": "real"
+      },
+      "LSTM Regressor": {
+        "rmse": 5.7162,
+        "mae": 4.2543,
+        "trend_accuracy": 0.6099,
+        "test_samples": 60,
+        "modo": "demo"
+      },
+      "ARIMA-LSTM": {
+        "rmse": 5.129,
+        "mae": 3.8259,
+        "trend_accuracy": 0.5209,
+        "test_samples": 60,
+        "modo": "demo"
+      }
+    },
+    "VOLCABC1": {
+      "ARIMA": {
+        "rmse": 0.4286,
+        "mae": 0.407,
+        "trend_accuracy": 0.4407,
+        "test_samples": 60,
+        "modo": "real"
+      },
+      "LSTM Regressor": {
+        "rmse": 0.3393,
+        "mae": 0.264,
+        "trend_accuracy": 0.5722,
+        "test_samples": 60,
+        "modo": "demo"
+      },
+      "ARIMA-LSTM": {
+        "rmse": 0.3983,
+        "mae": 0.2854,
+        "trend_accuracy": 0.6104,
+        "test_samples": 60,
+        "modo": "demo"
+      }
+    },
+    "BVN": {
+      "ARIMA": {
+        "rmse": 23.9639,
+        "mae": 23.4367,
+        "trend_accuracy": 0.3729,
+        "test_samples": 60,
+        "modo": "real"
+      },
+      "LSTM Regressor": {
+        "rmse": 20.8636,
+        "mae": 15.8361,
+        "trend_accuracy": 0.6056,
+        "test_samples": 60,
+        "modo": "demo"
+      },
+      "ARIMA-LSTM": {
+        "rmse": 19.4644,
+        "mae": 15.1403,
+        "trend_accuracy": 0.5493,
+        "test_samples": 60,
+        "modo": "demo"
+      }
+    },
+    "ABX": {
+      "ARIMA": {
+        "rmse": 40.3338,
+        "mae": 40.1012,
+        "trend_accuracy": 0.4576,
+        "test_samples": 60,
+        "modo": "real"
+      },
+      "LSTM Regressor": {
+        "rmse": 33.2595,
+        "mae": 23.4504,
+        "trend_accuracy": 0.5412,
+        "test_samples": 60,
+        "modo": "demo"
+      },
+      "ARIMA-LSTM": {
+        "rmse": 36.276,
+        "mae": 30.5322,
+        "trend_accuracy": 0.5775,
+        "test_samples": 60,
+        "modo": "demo"
+      }
+    },
+    "BHP": {
+      "ARIMA": {
+        "rmse": 7.8356,
+        "mae": 5.895,
+        "trend_accuracy": 0.3051,
+        "test_samples": 60,
+        "modo": "real"
+      },
+      "LSTM Regressor": {
+        "rmse": 7.1719,
+        "mae": 5.8804,
+        "trend_accuracy": 0.5242,
+        "test_samples": 60,
+        "modo": "demo"
+      },
+      "ARIMA-LSTM": {
+        "rmse": 7.2868,
+        "mae": 5.9042,
+        "trend_accuracy": 0.5681,
+        "test_samples": 60,
+        "modo": "demo"
+      }
+    },
+    "SCCO": {
+      "ARIMA": {
+        "rmse": 105.2068,
+        "mae": 101.8955,
+        "trend_accuracy": 0.2881,
+        "test_samples": 60,
+        "modo": "real"
+      },
+      "LSTM Regressor": {
+        "rmse": 98.2429,
+        "mae": 81.223,
+        "trend_accuracy": 0.5603,
+        "test_samples": 60,
+        "modo": "demo"
+      },
+      "ARIMA-LSTM": {
+        "rmse": 84.1118,
+        "mae": 71.3096,
+        "trend_accuracy": 0.609,
+        "test_samples": 60,
+        "modo": "demo"
+      }
+    }
+  }
+}

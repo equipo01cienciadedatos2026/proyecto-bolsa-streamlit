@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+import json
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from config import EMPRESAS, FEATURE_COLS, VENTANA_DL
@@ -433,6 +434,61 @@ def render():
                     )
                     guardadas += 1
                 st.success(f'{guardadas} predicciones guardadas.')
+
+        # ── Métricas de Evaluación ──
+        st.divider()
+        st.markdown('### Métricas de Evaluación de los Modelos')
+        metrics_path = os.path.join(MODELS_BASE, 'metrics.json')
+        if os.path.exists(metrics_path):
+            with open(metrics_path) as f:
+                all_metrics = json.load(f)
+            reg_metrics = all_metrics.get('regresion', {}).get(empresa_key, {})
+
+            if reg_metrics:
+                met_filas = []
+                for nombre_m, met in reg_metrics.items():
+                    modo_tag = '' if met.get('modo') == 'real' else ' (Demo)'
+                    met_filas.append({
+                        'Modelo': f'{nombre_m}{modo_tag}',
+                        'RMSE': f'{met["rmse"]:.4f}',
+                        'MAE': f'{met["mae"]:.4f}',
+                        'Precisión Tendencia': f'{met["trend_accuracy"]:.1%}',
+                        'Muestras Test': met.get('test_samples', '—'),
+                    })
+                df_met = pd.DataFrame(met_filas)
+                st.dataframe(df_met, use_container_width=True, hide_index=True)
+
+                fig_met = go.Figure()
+                nombres_m = [m['Modelo'] for m in met_filas]
+                rmse_vals = [reg_metrics[n.split(' (Demo)')[0]]['rmse'] for n in nombres_m]
+                mae_vals = [reg_metrics[n.split(' (Demo)')[0]]['mae'] for n in nombres_m]
+
+                fig_met.add_trace(go.Bar(name='RMSE', x=nombres_m, y=rmse_vals, marker_color='#0f2b46'))
+                fig_met.add_trace(go.Bar(name='MAE', x=nombres_m, y=mae_vals, marker_color='#1a7f64'))
+                fig_met.update_layout(
+                    **CHART_LAYOUT, height=320, barmode='group',
+                    legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1),
+                    yaxis=dict(title='Error (USD)', gridcolor='#eef2f6'),
+                )
+                st.plotly_chart(fig_met, use_container_width=True)
+
+                st.caption(
+                    '**RMSE** (Root Mean Squared Error): Error cuadrático medio — penaliza errores grandes | '
+                    '**MAE** (Mean Absolute Error): Error absoluto medio — más intuitivo | '
+                    '**Precisión Tendencia**: % de veces que acertó la dirección del precio'
+                )
+
+                mejor_modelo = min(reg_metrics.items(), key=lambda x: x[1]['rmse'])
+                st.markdown(
+                    f'<div style="padding:12px 16px; background:#f0fdf4; border:1px solid #bbf7d0; '
+                    f'border-radius:8px; border-left:3px solid #16a34a;">'
+                    f'<p style="margin:0; font-size:0.9rem; color:#166534 !important;">'
+                    f'Mejor modelo por RMSE: <b>{mejor_modelo[0]}</b> (RMSE: {mejor_modelo[1]["rmse"]:.4f})</p>'
+                    f'</div>',
+                    unsafe_allow_html=True
+                )
+        else:
+            st.info('Ejecuta `python -m utils.generate_metrics` para generar las métricas de evaluación.')
 
     # ── Explicación ──
     st.divider()
